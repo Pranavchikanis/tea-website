@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            🌿 Steep & Sip
+        </a>
+        <div class="nav-links"><a href="/admin/index.html" class="admin-only d-none" style="color: var(--accent-color);">Admin Panel</a>
+            <a href="/index.html">Home</a>
+            <a href="/shop.html">Shop Teas</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Guest Only -->
+            <a href="/login.html" class="btn btn-outline guest-only d-none">Login</a>
+            <a href="/register.html" class="btn btn-primary guest-only d-none">Sign Up</a>
+            
+            <!-- Auth Only -->
+            <span class="auth-only d-none">Hi, <span class="user-name-display"></span>!</span>
+            <a href="/cart.html" class="btn btn-outline auth-only d-none">Cart (<span id="nav-cart-count">0</span>)</a>
+            <a href="/account.html" class="btn btn-outline auth-only d-none">Account</a>
+            <a href="#" class="btn btn-primary auth-only d-none logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 2rem;">
+        <h1 style="margin-bottom: 1rem;">Shop Premium Teas</h1>
+        
+        <div style="margin-bottom: 2rem; display: flex; gap: 1rem; align-items: center;">
+            <label for="category-filter" style="font-weight: 500;">Filter by Category:</label>
+            <select id="category-filter" class="form-control" style="width: auto; display: inline-block;">
+                <option value="">All Teas</option>
+            </select>
+        </div>
+
+        <div id="product-grid" class="product-grid">
+            <!-- Products will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Steep & Sip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/shop.js"></script>
+</body>
+</html>

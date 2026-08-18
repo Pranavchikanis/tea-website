@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .account-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .profile-sidebar {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1rem auto;
+        }
+        .profile-name {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .profile-email {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+        }
+        .account-content {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+        }
+        .order-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .order-meta {
+            display: flex;
+            gap: 2rem;
+        }
+        .meta-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .meta-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .meta-value {
+            font-weight: 600;
+        }
+        .order-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        .order-item-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .account-container {
+                grid-template-columns: 1fr;
+            }
+            .order-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            🌿 Steep & Sip
+        </a>
+        <div class="nav-links"><a href="/admin/index.html" class="admin-only d-none" style="color: var(--accent-color);">Admin Panel</a>
+            <a href="/index.html">Home</a>
+            <a href="/shop.html">Shop Teas</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Auth Only -->
+            <span class="auth-only">Hi, <span class="user-name-display"></span>!</span>
+            <a href="/cart.html" class="btn btn-outline auth-only">Cart</a>
+            <a href="#" class="btn btn-primary auth-only logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+        <h1 style="margin-bottom: 1rem;">My Account</h1>
+        
+        <div id="account-alert" class="alert d-none"></div>
+
+        <div class="account-container d-none" id="account-view">
+            <div class="profile-sidebar">
+                <div class="profile-avatar" id="profile-initial">?</div>
+                <div class="profile-name" id="profile-name">Loading...</div>
+                <div class="profile-email" id="profile-email">Loading...</div>
+                
+                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 1.5rem 0;">
+                
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.5rem;">
+                        <a href="#orders" style="text-decoration: none; color: var(--primary-color); font-weight: 500;">Order History</a>
+                    </li>
+                    <!-- Future extensions -->
+                    <!-- <li><a href="#settings">Settings</a></li> -->
+                </ul>
+            </div>
+            
+            <div class="account-content">
+                <h2 style="margin-bottom: 1.5rem;" id="orders">Order History</h2>
+                <div id="orders-container">
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        Loading orders...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Steep & Sip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/account.js"></script>
+</body>
+</html>

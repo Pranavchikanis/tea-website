@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .cart-items {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+        }
+        .cart-summary {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            height: fit-content;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
+        .cart-item-details {
+            flex: 1;
+        }
+        .cart-item-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .cart-item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .quantity-input {
+            width: 60px;
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+        }
+        .btn-remove {
+            color: var(--error-color);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .btn-remove:hover {
+            text-decoration: underline;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .summary-total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            🌿 Steep & Sip
+        </a>
+        <div class="nav-links"><a href="/admin/index.html" class="admin-only d-none" style="color: var(--accent-color);">Admin Panel</a>
+            <a href="/index.html">Home</a>
+            <a href="/shop.html">Shop Teas</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Guest Only -->
+            <a href="/login.html" class="btn btn-outline guest-only d-none">Login</a>
+            <a href="/register.html" class="btn btn-primary guest-only d-none">Sign Up</a>
+            
+            <!-- Auth Only -->
+            <span class="auth-only d-none">Hi, <span class="user-name-display"></span>!</span>
+            <a href="/cart.html" class="btn btn-outline auth-only d-none">Cart (<span id="nav-cart-count">0</span>)</a>
+            <a href="/account.html" class="btn btn-outline auth-only d-none">Account</a>
+            <a href="#" class="btn btn-primary auth-only d-none logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+        <h1 style="margin-bottom: 1rem;">Your Shopping Cart</h1>
+        
+        <div id="cart-alert" class="alert d-none"></div>
+
+        <div id="cart-content" class="cart-container d-none">
+            <div class="cart-items" id="cart-items-list">
+                <!-- Items injected here -->
+            </div>
+            
+            <div class="cart-summary">
+                <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Calculated at checkout</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="summary-total">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; font-size: 1.125rem;">Proceed to Checkout</button>
+            </div>
+        </div>
+        
+        <div id="empty-cart-msg" class="d-none" style="text-align: center; padding: 4rem 0;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">🛒</div>
+            <h2>Your cart is empty</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Looks like you haven't added any teas yet.</p>
+            <a href="/shop.html" class="btn btn-primary">Start Shopping</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Steep & Sip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/cart.js"></script>
+</body>
+</html>

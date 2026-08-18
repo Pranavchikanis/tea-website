@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .admin-nav {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        .admin-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-links a {
+            margin-right: 1rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .admin-links a:hover, .admin-links a.active {
+            color: var(--primary-color);
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-nav">
+        <div class="container">
+            <div>
+                <a href="/" style="font-weight: 700; text-decoration: none; color: inherit; margin-right: 2rem;">🌿 Storefront</a>
+                <span class="admin-links">
+                    <a href="/admin/index.html" class="active">Dashboard</a>
+                    <a href="/admin/products.html">Products</a>
+                </span>
+            </div>
+            <div>
+                <a href="#" class="btn btn-outline" onclick="auth.logout(); return false;">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Welcome to the store administration panel.</p>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="total-products">-</div>
+                <div class="stat-label">Total Products</div>
+                <div style="margin-top: 1rem;">
+                    <a href="/admin/products.html" class="btn btn-primary" style="width: 100%;">Manage Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check auth
+            setTimeout(async () => {
+                if (!auth.isAuthenticated() || auth.currentUser.role !== 'ROLE_ADMIN') {
+                    window.location.href = '/login.html';
+                    return;
+                }
+                
+                try {
+                    const products = await api.get('/admin/products');
+                    document.getElementById('total-products').textContent = products.length;
+                } catch (e) {
+                    console.error('Failed to load stats', e);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

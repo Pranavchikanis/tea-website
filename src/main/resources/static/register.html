@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            🌿 Steep & Sip
+        </a>
+        <div class="nav-links"><a href="/admin/index.html" class="admin-only d-none" style="color: var(--accent-color);">Admin Panel</a>
+            <a href="/index.html">Home</a>
+            <a href="/shop.html">Shop Teas</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Guest Only -->
+            <a href="/login.html" class="btn btn-outline guest-only d-none">Login</a>
+            <a href="/register.html" class="btn btn-primary guest-only d-none">Sign Up</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Create an Account</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Join Steep & Sip today</p>
+            </div>
+            
+            <div id="register-error" class="alert alert-error d-none"></div>
+
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" required minlength="6" autocomplete="new-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register</button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="/login.html">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Steep & Sip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/register.js"></script>
+</body>
+</html>

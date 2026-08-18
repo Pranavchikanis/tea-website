@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Steep & Sip</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .checkout-section {
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            height: fit-content;
+        }
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .order-item-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .order-total {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            🌿 Steep & Sip
+        </a>
+        <div class="nav-links"><a href="/admin/index.html" class="admin-only d-none" style="color: var(--accent-color);">Admin Panel</a>
+            <a href="/index.html">Home</a>
+            <a href="/shop.html">Shop Teas</a>
+        </div>
+        <div class="nav-actions">
+            <!-- Auth Only (Checkout is protected) -->
+            <span class="auth-only">Hi, <span class="user-name-display"></span>!</span>
+            <a href="/cart.html" class="btn btn-outline auth-only">Cart</a>
+            <a href="/account.html" class="btn btn-outline auth-only">Account</a>
+            <a href="#" class="btn btn-primary auth-only logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
+        <h1 style="margin-bottom: 1rem;">Checkout</h1>
+        
+        <div id="checkout-alert" class="alert d-none"></div>
+
+        <div class="checkout-container d-none" id="checkout-content">
+            <div class="checkout-section">
+                <h3 style="margin-bottom: 1.5rem;">Shipping Details</h3>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="shippingAddress">Full Shipping Address</label>
+                        <textarea id="shippingAddress" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMethod">Payment Method</label>
+                        <select id="paymentMethod" class="form-control" required>
+                            <option value="CASH_ON_DELIVERY">Cash on Delivery</option>
+                            <option value="CREDIT_CARD" disabled>Credit Card (Coming Soon)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; font-size: 1.125rem;">Place Order</button>
+                </form>
+            </div>
+            
+            <div class="checkout-section">
+                <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                <div id="order-items-container">
+                    <!-- Items injected here -->
+                </div>
+                <div class="order-total">
+                    <span>Total</span>
+                    <span id="order-total-amount">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="success-content" class="d-none" style="text-align: center; padding: 4rem 0;">
+            <div style="font-size: 4rem; margin-bottom: 1rem; color: var(--success-color);">✅</div>
+            <h2>Order Placed Successfully!</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Thank you for your purchase. We are preparing your teas.</p>
+            <a href="/shop.html" class="btn btn-outline" style="margin-right: 1rem;">Continue Shopping</a>
+            <a href="/account.html" class="btn btn-primary">View Orders</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Steep & Sip. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/checkout.js"></script>
+</body>
+</html>
