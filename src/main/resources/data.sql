@@ -12,7 +12,7 @@ INSERT INTO products (id, category_id, name, description, price, stock_quantity,
 VALUES (2, 1, 'Assam CTC', 'A strong, malty black tea perfect for mornings.', 450.00, 100, 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=800&q=80', true, NOW(), NOW());
 
 INSERT INTO products (id, category_id, name, description, price, stock_quantity, image_url, is_active, created_at, updated_at) 
-VALUES (3, 2, 'Jasmine Green Tea', 'A fragrant green tea infused with jasmine blossoms.', 650.00, 75, 'https://images.unsplash.com/photo-1594631252845-29fc4cc8c0a1?w=800&q=80', true, NOW(), NOW());
+VALUES (3, 2, 'Jasmine Green Tea', 'A fragrant green tea infused with jasmine blossoms.', 650.00, 75, 'https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?w=800&q=80', true, NOW(), NOW());
 
 INSERT INTO products (id, category_id, name, description, price, stock_quantity, image_url, is_active, created_at, updated_at) 
 VALUES (4, 3, 'Chamomile Calm', 'A soothing herbal blend of chamomile flowers.', 550.00, 60, 'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800&q=80', true, NOW(), NOW());
