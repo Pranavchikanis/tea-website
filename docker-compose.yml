@@ -1,15 +1,16 @@
 services:
   db:
-    image: mysql:8.0
+    image: postgres:15
     container_name: steepandsip_db
     restart: always
     environment:
-      MYSQL_DATABASE: teastore_dev
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: teastore_dev
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
     ports:
-      - "3307:3306" # Mapped to 3307 on host to avoid conflict with local MySQL if running
+      - "5432:5432" # Mapped to 5432 on host
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/postgresql/data
 
   app:
     build: .
@@ -18,7 +19,7 @@ services:
     ports:
       - "80:8080" # Maps port 80 to Spring Boot's 8080
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/teastore_dev?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/teastore_dev
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     depends_on:
