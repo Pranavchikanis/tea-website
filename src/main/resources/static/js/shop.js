@@ -65,8 +65,19 @@ async function addToCart(productId) {
     
     try {
         await api.post('/cart/items', { productId: productId, quantity: 1 });
-        // Optional: show a toast or update nav counter
-        alert('Added to cart!');
+        await auth.updateCartCount();
+        
+        // Find button and show success temporarily
+        const btns = document.querySelectorAll(`button[onclick="addToCart(${productId})"]`);
+        btns.forEach(btn => {
+            const originalText = btn.textContent;
+            btn.textContent = 'Added!';
+            btn.style.backgroundColor = 'var(--success-color)';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = '';
+            }, 2000);
+        });
     } catch (error) {
         alert('Failed to add to cart: ' + error.message);
     }

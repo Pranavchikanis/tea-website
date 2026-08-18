@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -92,6 +92,25 @@
         @media (max-width: 768px) {
             .cart-container {
                 grid-template-columns: 1fr;
+            }
+            .cart-item {
+                flex-wrap: wrap;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+            .cart-item-img {
+                width: 80px;
+                height: 80px;
+            }
+            .cart-item-details {
+                min-width: 120px;
+            }
+            .cart-item-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 0.5rem;
+                padding-top: 1rem;
+                border-top: 1px dashed var(--border-color);
             }
         }
     </style>

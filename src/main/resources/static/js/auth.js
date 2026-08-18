@@ -63,11 +63,32 @@ const auth = {
             } else {
                 adminElements.forEach(el => el.classList.add('d-none'));
             }
+            
+            this.updateCartCount();
         } else {
             guestElements.forEach(el => el.classList.remove('d-none'));
             authElements.forEach(el => el.classList.add('d-none'));
             adminElements.forEach(el => el.classList.add('d-none'));
             userNameDisplays.forEach(el => el.textContent = '');
+            
+            const countSpan = document.getElementById('nav-cart-count');
+            if (countSpan) countSpan.textContent = '0';
+        }
+    },
+    
+    async updateCartCount() {
+        if (!this.isAuthenticated()) return;
+        const countSpan = document.getElementById('nav-cart-count');
+        if (!countSpan) return;
+        
+        try {
+            const cartData = await api.get('/cart');
+            if (cartData && cartData.items) {
+                const count = cartData.items.reduce((sum, item) => sum + item.quantity, 0);
+                countSpan.textContent = count;
+            }
+        } catch (error) {
+            console.error('Failed to update cart count', error);
         }
     }
 };
